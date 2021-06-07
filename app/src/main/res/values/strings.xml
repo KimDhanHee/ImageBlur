@@ -1,0 +1,13 @@
+<resources>
+  <string name="app_name">WorkManagerExercise</string>
+  
+  <string name="button_apply_blur">Apply</string>
+  <string name="button_see_file">See File</string>
+  <string name="button_cancel">Cancel</string>
+  
+  <string name="select_blur_level_guide">Select Blur Amount</string>
+  
+  <string name="radio_button_little_blurred">A Little Blurred</string>
+  <string name="radio_button_more_blurred">More Blurred</string>
+  <string name="radio_button_most_blurred">The Most Blurred</string>
+</resources>

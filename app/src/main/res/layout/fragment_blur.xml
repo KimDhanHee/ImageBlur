@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+  
+  <data>
+    
+    <import type="android.view.View" />
+    
+    <variable
+      name="isInApplyingProgress"
+      type="boolean" />
+    
+    <variable
+      name="isBlurredImageExist"
+      type="boolean" />
+  </data>
+  
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ImageView
+      android:id="@+id/ivImage"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toTopOf="@id/tvBlurAmountGuide"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+    
+    <TextView
+      android:id="@+id/tvBlurAmountGuide"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="12dp"
+      android:text="@string/select_blur_level_guide"
+      android:textSize="28dp"
+      app:layout_constraintBottom_toTopOf="@id/radioGroup"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+    
+    <RadioGroup
+      android:id="@+id/radioGroup"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="12dp"
+      app:layout_constraintBottom_toTopOf="@id/viewButtonContainer"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+      
+      <RadioButton
+        android:id="@+id/radioBlurLv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_little_blurred" />
+      
+      <RadioButton
+        android:id="@+id/radioBlurLv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_more_blurred" />
+      
+      <RadioButton
+        android:id="@+id/radioBlurLv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radio_button_most_blurred" />
+    </RadioGroup>
+    
+    <LinearLayout
+      android:id="@+id/viewButtonContainer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:padding="12dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+      
+      <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel"
+        android:visibility="@{isInApplyingProgress ? View.VISIBLE : View.GONE}" />
+      
+      <Button
+        android:id="@+id/btnApply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:text="@string/button_apply_blur"
+        android:visibility="@{isInApplyingProgress ? View.GONE : View.VISIBLE}" />
+    </LinearLayout>
+    
+    <ProgressBar
+      android:id="@+id/progress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="@{isInApplyingProgress ? View.VISIBLE : View.GONE}"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
