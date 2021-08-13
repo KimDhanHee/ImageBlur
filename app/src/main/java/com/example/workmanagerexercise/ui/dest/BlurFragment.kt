@@ -105,8 +105,4 @@ class BlurFragment: BaseFragment<FragmentBlurBinding>(
       viewModel.cancelWork()
     }
   }
-
-  private fun selectImage() {
-
-  }
 }
