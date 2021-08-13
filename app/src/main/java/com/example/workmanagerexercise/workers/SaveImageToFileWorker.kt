@@ -11,9 +11,10 @@ import com.example.workmanagerexercise.KEY_IMAGE_URI
 import timber.log.Timber
 import java.lang.Exception
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
-class SaveImageToFileWorker(context: Context, params: WorkerParameters): Worker(context, params) {
+class SaveImageToFileWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
   private val title = "Blurred Image"
   private val dateFormatter = SimpleDateFormat(
     "yyyy.MM.dd 'at' HH:mm:ss z",
@@ -31,7 +32,9 @@ class SaveImageToFileWorker(context: Context, params: WorkerParameters): Worker(
     return try {
       val resourceUri = inputData.getString(KEY_IMAGE_URI)
       val bitmap = BitmapFactory.decodeStream(resolver.openInputStream(Uri.parse(resourceUri)))
-      val imageUrl = MediaStore.Images.Media.insertImage(resolver, bitmap, title, dateFormatter.format(Date()))
+      val imageUrl =
+        MediaStore.Images.Media.insertImage(resolver, bitmap, title, dateFormatter.format(
+          Date()))
 
       when {
         !imageUrl.isNullOrEmpty() -> {

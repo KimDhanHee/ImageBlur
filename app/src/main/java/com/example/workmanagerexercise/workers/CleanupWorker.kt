@@ -11,7 +11,7 @@ import java.lang.Exception
 /**
  * Cleans up temporary files generated during blurring process
  */
-class CleanupWorker(context: Context, params: WorkerParameters): Worker(context, params) {
+class CleanupWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
   override fun doWork(): Result {
     // Makes a notification when the work starts and slows down the work so that
     // it's easier to see each WorkRequest start, even on emulated devices

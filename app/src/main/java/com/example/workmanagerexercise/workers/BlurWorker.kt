@@ -11,7 +11,7 @@ import com.example.workmanagerexercise.KEY_IMAGE_URI
 import timber.log.Timber
 import java.lang.IllegalArgumentException
 
-class BlurWorker(context: Context, params: WorkerParameters): Worker(context, params) {
+class BlurWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
   override fun doWork(): Result {
     val resourceUri = inputData.getString(KEY_IMAGE_URI)
 

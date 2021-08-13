@@ -13,16 +13,21 @@ import android.renderscript.ScriptIntrinsicBlur
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.graphics.BitmapCompat
-import com.example.workmanagerexercise.*
+import com.example.workmanagerexercise.CHANNEL_ID
+import com.example.workmanagerexercise.DELAY_TIME_MILLIS
+import com.example.workmanagerexercise.NOTIFICATION_ID
+import com.example.workmanagerexercise.NOTIFICATION_TITLE
+import com.example.workmanagerexercise.OUTPUT_PATH
+import com.example.workmanagerexercise.R
+import com.example.workmanagerexercise.VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION
+import com.example.workmanagerexercise.VERBOSE_NOTIFICATION_CHANNEL_NAME
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
-import kotlin.Throws
+import java.util.UUID
 
 fun makeStatusNotification(message: String, context: Context) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -96,7 +101,8 @@ fun writeBitmapToFile(applicationContext: Context, bitmap: Bitmap): Uri {
     out?.let {
       try {
         it.close()
-      } catch (ignore: IOException) {}
+      } catch (ignore: IOException) {
+      }
     }
   }
 

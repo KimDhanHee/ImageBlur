@@ -3,7 +3,7 @@ package com.example.workmanagerexercise
 import android.app.Application
 import timber.log.Timber
 
-class BlurApplication: Application() {
+class BlurApplication : Application() {
   override fun onCreate() {
     super.onCreate()
 

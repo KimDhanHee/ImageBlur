@@ -16,20 +16,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class BlurFragment: BaseFragment<FragmentBlurBinding>(
+class BlurFragment : BaseFragment<FragmentBlurBinding>(
   R.layout.fragment_blur
 ) {
   private val viewModel by viewModels<BlurViewModel>()
 
-  private val requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { grant ->
-    if (!grant) return@registerForActivityResult
+  private val requestPermissionLauncher =
+    registerForActivityResult(ActivityResultContracts.RequestPermission()) { grant ->
+      if (!grant) return@registerForActivityResult
 
-    imageRequestLauncher.launch("image/*")
-  }
+      imageRequestLauncher.launch("image/*")
+    }
 
-  private val imageRequestLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-    viewModel.setImageUri(uri.toString())
-  }
+  private val imageRequestLauncher =
+    registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+      viewModel.setImageUri(uri.toString())
+    }
 
   override fun FragmentBlurBinding.bindingVM() {
     CoroutineScope(Dispatchers.Main).run {
@@ -80,7 +82,8 @@ class BlurFragment: BaseFragment<FragmentBlurBinding>(
     ivImage.setOnClickListener {
       context ?: return@setOnClickListener
 
-      when (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      when (ContextCompat.checkSelfPermission(requireContext(),
+        Manifest.permission.READ_EXTERNAL_STORAGE)) {
         PackageManager.PERMISSION_GRANTED -> {
           imageRequestLauncher.launch("image/*")
         }

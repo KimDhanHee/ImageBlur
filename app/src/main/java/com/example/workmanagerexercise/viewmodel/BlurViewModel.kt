@@ -4,7 +4,13 @@ import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.example.workmanagerexercise.IMAGE_MANIPULATION_WORK_NAME
 import com.example.workmanagerexercise.KEY_IMAGE_URI
 import com.example.workmanagerexercise.TAG_OUTPUT
@@ -20,6 +26,7 @@ class BlurViewModel(application: Application) : AndroidViewModel(application) {
   private val _imageUriFlow = MutableStateFlow<Uri?>(null)
   val imageUriFlow: StateFlow<Uri?>
     get() = _imageUriFlow
+
   internal fun setImageUri(uriString: String?) {
     _imageUriFlow.value = uriOrNull(uriString)
   }
@@ -27,12 +34,14 @@ class BlurViewModel(application: Application) : AndroidViewModel(application) {
   private val _outputUriFlow = MutableStateFlow<Uri?>(null)
   val outputUriFlow: StateFlow<Uri?>
     get() = _outputUriFlow
+
   internal fun setOutputUri(outputImageUri: String?) {
     _isApplyBlurInProgressFlow.value = false
     _outputUriFlow.value = uriOrNull(outputImageUri)
   }
 
-  internal val outputWorkInfos: LiveData<List<WorkInfo>> = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
+  internal val outputWorkInfos: LiveData<List<WorkInfo>> =
+    workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
 
   private val _isApplyBlurInProgressFlow = MutableStateFlow(false)
   val isApplyBlurInProgressFlow: StateFlow<Boolean>
